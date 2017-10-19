@@ -15,10 +15,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.cross_validation import train_test_split
 from inspect import getmembers
 
-
 data=np.loadtxt(open("data_one.csv","rb"),delimiter=",",skiprows=0)
-
-
 
 enc = OneHotEncoder()
 enc.fit(data)
@@ -27,30 +24,10 @@ print(enc.n_values_)
 print(enc.feature_indices_)
 print(enc.active_features_)
 
-     #YY=enc.transform(data).toarray()
-      #print YY[0]
-
-
-
 Tdata = OneHotEncoder(categorical_features=[0,1,2,3,4,5,6,7,8,9,10,11,12,13])
 TT=Tdata.fit_transform(data).toarray()
 
-
-
-
-
-
-#Tdata = OneHotEncoder(categorical_features=[0,1,2,3,4,6,7,8,9,10,11,12,13,15])
-#TT=Tdata.fit_transform(data).toarray()
-
-#logtran = FunctionTransformer(np.log1p, accept_sparse=True)
-#MaxAbsScaler().fit_transform(TT)
-#YY = maxabs_scale(TT)
-
-
-
 print TT[0]
-#input('stop')
 
 X, y =TT[:,:76],TT[:,77]
 
@@ -65,39 +42,16 @@ print(importance)
 #print(et.decision_path(X_train))
 #input("stop")
 print(et.score(X_test,y_test))
-'''
-
-clf = DecisionTreeClassifier()
-clf = clf.fit(X_train, y_train)
-#tree = clf.fit(X_train, y_train)
-
-print(clf.score(X_test,y_test))
-
-print (clf.tree_.__getstate__())
-
-'''
 
 
-'''
+
+
 rf=RandomForestClassifier(criterion='entropy',n_estimators=500,random_state=0,n_jobs=2,max_depth=6,max_features='log2')
 rf.fit(X_train,y_train)
 
 print(rf.score(X_test,y_test))
-'''
-#lr=LogisticRegression(penalty='l2', C=1, random_state=0, max_iter=100100, coef_=[4,76])
-#lr.fit(X_train,y_train)
-
-#print(lr.score(X_test,y_test))
-
-#print et.decision_path(TT[:,:76])
-
-#print et.tree_.feature
-#zip(TT.columns[et.tree_.feature], et.tree_.threshold, et.tree_.children_left, et.tree_.children_right)
 
 
-#print getmembers( et.tree_)
-
-'''
 kn=KNeighborsClassifier(n_neighbors=3, p=1, metric='minkowski')
 kn.fit(X_train,y_train)
 
@@ -118,14 +72,3 @@ mlp = MLPClassifier(activation='relu',solver='sgd',learning_rate='adaptive', lea
 mlp.fit(X_train,y_train)
 
 print(mlp.score(X_test,y_test))
-'''
-#sc=SVC(C=10, random_state=0,gamma = 0.001, probability=True)
-#sc.fit(X_train,y_train)
-
-#print(sc.score(X_test,y_test))
-
-#test=np.loadtxt(open("input.csv","rb"),delimiter=",",skiprows=0)
-#predicted=et.predict(test)
-#np.savetxt('output.csv',predicted,delimiter=',')
-
-#print et.score(X_test,y_test)
